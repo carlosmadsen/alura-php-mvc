@@ -1,0 +1,3 @@
+vendor
+var/data/banco.sqlite
+composer.lock
