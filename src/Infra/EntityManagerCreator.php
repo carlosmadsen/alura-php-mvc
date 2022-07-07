@@ -5,7 +5,7 @@ namespace Alura\Cursos\Infra;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Tools\Setup;
-
+ 
 class EntityManagerCreator
 {
     public function getEntityManager(): EntityManagerInterface

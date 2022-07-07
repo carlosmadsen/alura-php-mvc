@@ -35,5 +35,5 @@ foreach ($resposta->getHeaders() as $name => $values) {
     }
 }
 echo $resposta->getBody();
-
+ 
 

@@ -18,7 +18,7 @@ class Usuario
      * @Column(type="string")
      */
     private $email;
-    /**
+    /** 
      * @Column(type="string")
      */
     private $senha;

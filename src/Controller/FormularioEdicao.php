@@ -32,12 +32,12 @@ class FormularioEdicao implements RequestHandlerInterface
 		try {
 			$id = filter_var($request->getQueryParams()['id'], FILTER_VALIDATE_INT);
 			if (is_null($id) || $id === false) {
-				throw new \Exception("Id de curso inválido.", 1);
+				throw new \Exception("Id de curso invÃ¡lido.", 1);
 			}
 
 			$curso = $this->repositorioCursos->find($id);
 			if (is_null($curso)) {
-				throw new \Exception("Não foi possível identificar o curso.", 1);
+				throw new \Exception("NÃ£o foi possÃ­vel identificar o curso.", 1);
 			}
 
 			$html = $this->renderizaHtml('cursos/formulario.php', [

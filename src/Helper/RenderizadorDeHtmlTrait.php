@@ -14,5 +14,5 @@ trait RenderizadorDeHtmlTrait
 
         return $html;
     }
-
+ 
 }

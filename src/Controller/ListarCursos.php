@@ -30,7 +30,7 @@ class ListarCursos  implements RequestHandlerInterface
         $html = $this->renderizaHtml('cursos/listar-cursos.php', [
             'cursos' => $cursos,
             'titulo' => 'Lista de cursos'
-        ]);
+        ]); 
         return new Response(200, [], $html);
     }
 }

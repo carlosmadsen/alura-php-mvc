@@ -8,7 +8,9 @@ use Alura\Cursos\Controller\{
     FormularioEdicao,
     FormularioLogin,
     RealizarLogin,
-    Deslogar
+    Deslogar,
+    CursosEmJson,
+    CursosEmXml 
 };
 
 $rotas = [
@@ -19,7 +21,9 @@ $rotas = [
     '/alterar-curso' => FormularioEdicao::class,
     '/login' => FormularioLogin::class,
     '/realiza-login' => RealizarLogin::class,
-     '/logout' => Deslogar::class,
+    '/logout' => Deslogar::class,
+    '/buscarCursosEmJson' => CursosEmJson::class,
+    '/buscarCursosEmXml' => CursosEmXml::class
 ];
 
 return $rotas;

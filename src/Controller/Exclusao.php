@@ -26,7 +26,7 @@ class Exclusao implements RequestHandlerInterface
 		try {			
 			$id = filter_var($request->getQueryParams()['id'], FILTER_VALIDATE_INT);
 			if (is_null($id) || $id === false) {
-				throw new \Exception("Id de curso inválido.", 1);
+				throw new \Exception("Id de curso invÃ¡lido.", 1);
 			}
 
 			$curso = $this->entityManager->getReference(Curso::class, $id);

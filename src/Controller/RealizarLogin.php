@@ -32,12 +32,12 @@ class RealizarLogin implements RequestHandlerInterface
 			$senha = filter_var($request->getParsedBody()['senha'], FILTER_SANITIZE_STRING);
 		
 			if (is_null($email) || $email === false) {
-				throw new \Exception("E-mail ou senha inválido.", 1);		
+				throw new \Exception("E-mail ou senha invÃ¡lido.", 1);		
 			}
 
 			$usuario = $this->repositorioUsuarios->findOneBy(['email' => $email]);
 			if (is_null($usuario) or !$usuario->senhaEstaCorreta($senha)) {
-				throw new \Exception("E-mail ou senha inválido.", 1);				
+				throw new \Exception("E-mail ou senha invÃ¡lido.", 1);				
 			}
 
 			$_SESSION['logado'] = true;
@@ -47,5 +47,5 @@ class RealizarLogin implements RequestHandlerInterface
        		$this->defineMensagem('danger', $e->getMessage());
 			return new Response(302, ['Location' => '/login'], null);
      	}
-	}
+	} 
 }

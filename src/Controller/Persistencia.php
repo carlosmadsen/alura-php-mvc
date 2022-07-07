@@ -29,7 +29,7 @@ class Persistencia implements RequestHandlerInterface {
         $descricao = filter_var($request->getParsedBody()['descricao'], FILTER_SANITIZE_STRING);
 
         if (empty($descricao)) {
-          throw new \Exception("Descrição não informada.", 1);
+          throw new \Exception("Descriï¿½ï¿½o nï¿½o informada.", 1);
         }
         
         $curso = new Curso();
@@ -44,7 +44,7 @@ class Persistencia implements RequestHandlerInterface {
             $this->defineMensagem('success', 'Curso inserido com sucesso.');	
         }
         $this->entityManager->flush();
-      }
+      } 
       catch (\Exception $e) {
         $this->defineMensagem('danger', $e->getMessage());	
       }

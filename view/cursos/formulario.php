@@ -9,7 +9,7 @@
                 class="form-control"
                 value="<?= isset($curso) ? $curso->getDescricao(): ''; ?>"
             >
-        </div>
+        </div> 
         <button class="btn btn-primary">Salvar</button>
         <a href="/listar-cursos" class="btn btn-secondary">
             Voltar

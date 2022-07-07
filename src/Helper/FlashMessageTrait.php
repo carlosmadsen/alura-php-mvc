@@ -9,4 +9,4 @@ trait FlashMessageTrait
         $_SESSION['mensagem'] = $mensagem;
         $_SESSION['tipo_mensagem'] = $tipo;
     }
-}
+} 

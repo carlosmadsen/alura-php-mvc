@@ -12,6 +12,6 @@
         <button class="btn btn-primary">
             Entrar
         </button>
-    </form>
+    </form> 
 	
 <?php include __DIR__ . '/../fim-html.php'; ?>

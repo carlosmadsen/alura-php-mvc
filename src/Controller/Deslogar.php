@@ -8,7 +8,7 @@ use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 use Doctrine\ORM\EntityManagerInterface;
-
+ 
 class Deslogar implements RequestHandlerInterface
 {
     public function handle(ServerRequestInterface $request): ResponseInterface
@@ -16,4 +16,4 @@ class Deslogar implements RequestHandlerInterface
         session_destroy();
         return new Response(302, ['Location' => '/login'], null);
     }
-}
+} 

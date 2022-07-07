@@ -17,6 +17,6 @@ require __DIR__ . '/../inicio-html.php'; ?>
                 </span>
             </li>
         <?php endforeach; ?>
-    </ul>
+    </ul> 
 <?php
 require __DIR__ . '/../fim-html.php';
