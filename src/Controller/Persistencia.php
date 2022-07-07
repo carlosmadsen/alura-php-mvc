@@ -6,32 +6,32 @@ use Alura\Cursos\Infra\EntityManagerCreator;
 use Alura\Cursos\Entity\Curso;
 use Alura\Cursos\Helper\FlashMessageTrait;
 
-class Persistencia implements InterfaceControladorRequisicao {
-  use FlashMessageTrait;
+use Nyholm\Psr7\Response;
+use Psr\Http\Message\ServerRequestInterface;
+use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Server\RequestHandlerInterface;
+use Doctrine\ORM\EntityManagerInterface;
 
-    /**
-     * @var \Doctrine\ORM\EntityManagerInterface
-     */
+class Persistencia implements RequestHandlerInterface {
+    use FlashMessageTrait;
+
     private $entityManager;
 
-    public function __construct()
+    public function __construct(EntityManagerInterface $entityManager)
     {
-        $this->entityManager = (new EntityManagerCreator())->getEntityManager();
+        $this->entityManager = $entityManager;
     }
 
-    public function processaRequisicao(): void
+    public function handle(ServerRequestInterface $request): ResponseInterface
     {      
       try { 
-        $descricao = filter_input(
-          INPUT_POST,
-          'descricao',
-          FILTER_SANITIZE_STRING);
+        $id = filter_var($request->getQueryParams()['id'], FILTER_VALIDATE_INT);
+        $descricao = filter_var($request->getParsedBody()['descricao'], FILTER_SANITIZE_STRING);
 
-        $id = filter_input(
-          INPUT_GET,
-          'id',
-          FILTER_VALIDATE_INT);
-
+        if (empty($descricao)) {
+          throw new \Exception("Descrição não informada.", 1);
+        }
+        
         $curso = new Curso();
         $curso->setDescricao($descricao);
         //alterar 
@@ -48,6 +48,6 @@ class Persistencia implements InterfaceControladorRequisicao {
       catch (\Exception $e) {
         $this->defineMensagem('danger', $e->getMessage());	
       }
-      header('Location: /listar-cursos', true, 302);
+      return new Response(302, ['Location' => '/listar-cursos'], null);
     }
 }

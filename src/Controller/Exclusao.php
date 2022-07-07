@@ -2,41 +2,41 @@
 
 namespace Alura\Cursos\Controller;
 
-use Alura\Cursos\Infra\EntityManagerCreator;
 use Alura\Cursos\Entity\Curso;
 use Alura\Cursos\Helper\FlashMessageTrait;
 
-class Exclusao implements InterfaceControladorRequisicao
+use Nyholm\Psr7\Response;
+use Psr\Http\Message\ServerRequestInterface;
+use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Server\RequestHandlerInterface;
+use Doctrine\ORM\EntityManagerInterface;
+
+class Exclusao implements RequestHandlerInterface
 {
 	use FlashMessageTrait;
-
 	private $entityManager;
 
-	public function __construct()
+	public function __construct(EntityManagerInterface $entityManager)
     {
-        $this->entityManager = (new EntityManagerCreator())
-            ->getEntityManager();
+        $this->entityManager = $entityManager;
     }
 
-    public function processaRequisicao(): void
+    public function handle(ServerRequestInterface $request): ResponseInterface
     {
 		try {			
-			$id = filter_input(INPUT_GET,
-				'id',
-				FILTER_VALIDATE_INT);
-
+			$id = filter_var($request->getQueryParams()['id'], FILTER_VALIDATE_INT);
 			if (is_null($id) || $id === false) {
-				throw new \Exception("Id curso inválido.", 1);
+				throw new \Exception("Id de curso inválido.", 1);
 			}
 
 			$curso = $this->entityManager->getReference(Curso::class, $id);
 			$this->entityManager->remove($curso);
 			$this->entityManager->flush();
-			$this->defineMensagem('success', 'Curso removido com sucesso');			
+			$this->defineMensagem('success', 'Curso removido com sucesso');
 		}
 		catch (\Exception $e) {
-			$this->defineMensagem('danger', $e->getMessage());	
+			$this->defineMensagem('danger', $e->getMessage());
 		}
-		header('Location: /listar-cursos');
+		return new Response(302, ['Location' => '/listar-cursos'], null);
     }
 }
