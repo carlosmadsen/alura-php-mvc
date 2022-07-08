@@ -23,6 +23,16 @@ class Usuario
      */
     private $senha;
 
+    public function setEmail(string $email): void
+    {
+        $this->email = $email;
+    }
+
+    public function setSenha(string $senha): void
+    {
+        $this->senha = password_hash($senha, PASSWORD_ARGON2I);
+    }
+
     public function senhaEstaCorreta(string $senhaPura): bool
     {
         return password_verify($senhaPura, $this->senha);
