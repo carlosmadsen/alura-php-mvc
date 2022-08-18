@@ -10,9 +10,9 @@ git clone https://github.com/carlosmadsen/alura-php-mvc.git
 cd alura-php-mvc 
 composer install 
 ```
-Criação do banco de dados sqlite (no windows).
+Criação do banco de dados sqlite.
 ```
-.\vendor\bin\doctrine.bat orm:schema-tool:create
+php .\commands\doctrine.php orm:schema-tool:create
 ```
 Criando cursos:
 ```
